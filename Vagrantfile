@@ -33,4 +33,11 @@ SCRIPT
   fi
 SCRIPT
   config.vm.provision "shell", inline: $clone_repository
+
+  # Running `npm start`
+  # Attempting to get `postgres` working
+  # So far we have a Vagrant user created but now we are getting a password error from `node` but not `psql`...
+  # sudo su - postgres
+    # psql
+      # CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;
 end
