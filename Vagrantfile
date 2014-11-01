@@ -29,7 +29,7 @@ SCRIPT
   if ! test -d site &> /dev/null; then
     git clone https://github.com/nodebugme/site
     cd site
-    npm install
+    npm install -loglevel http
   fi
 SCRIPT
   config.vm.provision "shell", inline: $clone_repository
