@@ -6,11 +6,25 @@ Vagrant for [`nodebugme`][]
 
 This was created to prevent `postgres` pollution on local machines.
 
+[`nodebugme`]: https://github.com/nodebugme/site
+
 ## Getting Started
-Clone the repository, provision Vagrant, and run the application
+`vagrant-nodebugme` was developed against `Vagrant@1.4.1` but should be compatible with any `1.y.z`. To get `nodebugme` running, follow the steps below:
 
 ```bash
-git clone
+# Clone the repository
+git clone https://github.com/twolfson/vagrant-nodebugme
+cd vagrant-node
+
+# Provision Vagrant
+vagrant up
+
+# SSH into the machine and start the server
+# For development, you can edit `site/` on the host machine
+vagrant ssh
+  # Inside of Vagrant context
+  cd /vagrant/site/
+  npm start
 ```
 
 ## Contributing
