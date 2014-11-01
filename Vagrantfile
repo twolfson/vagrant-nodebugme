@@ -13,5 +13,5 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y nodejs
   fi
 SCRIPT
-  config.vm.provision "shell", inline: $update_apt_get
+  config.vm.provision "shell", inline: $install_node
 end
