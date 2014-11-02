@@ -40,4 +40,19 @@ SCRIPT
   # sudo su - postgres
     # psql
       # CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;
+
+  # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
+  # local   all             all                                     peer
+  # to
+  # local   all             all                                     md5
+  # DEV: We should create another user and configure that over `vagrant`.
+  # DEV: Then, we can append a row for `local all nodebugme md5`
+  # DEV: Unless we can use `md5` and auto-login via `.pgpass`
+
+  # Restart PostgreSQL server
+  # sudo /etc/init.d/postgresql restart
+
+  # Successfully run `npm start`
+  # TODO: We should be using `.pgpass` over environment variables
+  # PGUSER="vagrant" PGDATABASE="nodebugme" PGPASSWORD="password" npm start
 end
