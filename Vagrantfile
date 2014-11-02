@@ -35,30 +35,34 @@ SCRIPT
 SCRIPT
   config.vm.provision "shell", inline: $clone_repository
 
-  # Running `npm start`
-  # Attempting to get `postgres` working
-  # So far we have a Vagrant user created but now we are getting a password error from `node` but not `psql`...
-  # sudo su - postgres
-    # psql
-      # CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;
-      # TODO: Use a password like "R0cKeT\!TuRtl3."
-      # ALTER ROLE vagrant WITH PASSWORD "password";
+  # Set up PostgreSQL configuration
+  $setup_postgresql = <<SCRIPT
+  # If we can't open `psql` as `vagrant`
+  echo_command="psql --db postgres --command \"SELECT 'hai';\""
+  if ! sudo su --command "$echo_command" postgres &> /dev/null; then
+    # Set up `vagrant` user in PostgreSQL
+    create_user_command="psql --command \"CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;\""
+    sudo su --command "$create_user_command" postgres
+    psql_password="R0cKeT^TuRtl3."
+    set_password_command="psql --command \"ALTER ROLE vagrant WITH PASSWORD \\\"$psql_password\\\"\""
 
-  # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
-  # local   all             all                                     peer
-  # to
-  # local   all             all                                     md5
-  # DEV: We should create another user and configure that over `vagrant`.
-  # DEV: Then, we can append a row for `local all nodebugme md5`
-  # DEV: Unless we can use `md5` and auto-login via `.pgpass`
+    # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
+    # local   all             all                                     peer
+    # to
+    # local   all             all                                     md5
+    # DEV: We should create another user and configure that over `vagrant`.
+    # DEV: Then, we can append a row for `local all nodebugme md5`
+    # DEV: Unless we can use `md5` and auto-login via `.pgpass`
 
-  # Restart PostgreSQL server
-  # sudo /etc/init.d/postgresql restart
+    # Restart PostgreSQL server
+    # sudo /etc/init.d/postgresql restart
 
-  # Set up pgpass
-  # echo "localhost:5432:nodebugme:vagrant:password" > /home/vagrant/.pgpass
-  # chmod 0600 /home/vagrant/.pgpass
-  # chown vagrant:vagrant /home/vagrant/.pgpass
+    # Set up pgpass
+    # echo "localhost:5432:nodebugme:vagrant:password" > /home/vagrant/.pgpass
+    # chmod 0600 /home/vagrant/.pgpass
+    # chown vagrant:vagrant /home/vagrant/.pgpass
+  fi
+SCRIPT
 
   # Successfully run `npm start`
   # npm start
