@@ -66,6 +66,22 @@ EOF
   fi
 SCRIPT
 
-  # Successfully run `npm start`
-  # npm start
+  # Prompt the user with instruction on how to develop
+  $notify_user = <<SCRIPT
+  echo "\`vagrant-nodebugme\` is done setting everything up."
+  echo "To start \`nodebugme/site\`, \`ssh\` into the Vagrant file via:
+  echo "\`\`\`"
+  echo "vagrant ssh"
+  echo "\`\`\`"
+  echo ""
+  echo "Once inside, navigate to the \`nodebugme/site\` directory and start the server"
+  echo "\`\`\`"
+  echo "cd /vagrant/site"
+  echo "npm start"
+  echo "\`\`\`"
+  echo ""
+  echo "If you have any question, please consult the \`README.md\`."
+  echo "If the answer isn't there, please open an issue or pull request."
+SCRIPT
+  config.vm.provision "shell", inline: $notify_user  # npm start
 end
