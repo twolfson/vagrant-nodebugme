@@ -9,8 +9,6 @@ Vagrant.configure("2") do |config|
   # Bootstrap our Vagrant environment
   config.vm.provision "shell", path: "bin/bootstrap.sh"
 
-  # TODO: After `bin/bootstrap.sh`, set password to `password`, update pgpass, and see if it was an encoding issue (otherwise it is prob PGPASSWORD no longer existing which is silly)
-
   # Notify the user with instruction on how to develop
   $notify_user = <<SCRIPT
   cat /vagrant/lib/notify-user.md

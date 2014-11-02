@@ -4,6 +4,8 @@ Vagrant for [`nodebugme`][]
 
 This was created to prevent `postgres` pollution on local machines.
 
+// TODO: Add screenshot of `localhost:8080`
+
 [`nodebugme`]: https://github.com/nodebugme/site
 
 ## Getting Started
