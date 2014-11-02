@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
 
   # TODO: Move all scripts (except for echo) into `bin/bootstrap.sh`
 
+  # TODO: After `bin/bootstrap.sh`, set password to `password`, update pgpass, and see if it was an encoding issue (otherwise it is prob PGPASSWORD no longer existing which is silly)
+
   # Install dependencies
   $install_dependencies = <<SCRIPT
   if ! which curl &> /dev/null; then
