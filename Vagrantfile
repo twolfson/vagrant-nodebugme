@@ -46,21 +46,23 @@ SCRIPT
     psql_password="R0cKeT^TuRtl3."
     set_password_command="psql --command \"ALTER ROLE vagrant WITH PASSWORD \\\"$psql_password\\\"\""
 
-    # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
-    # local   all             all                                     peer
-    # to
-    # local   all             all                                     md5
-    # DEV: We should create another user and configure that over `vagrant`.
-    # DEV: Then, we can append a row for `local all nodebugme md5`
-    # DEV: Unless we can use `md5` and auto-login via `.pgpass`
+    # Require that `vagrant` must provide a password in addition to `peer` authentication
+    # DEV: This fixes an issue with `pg.js` where `peer` authentication doesn't seem to work
+    # DEV: Technically we should have explicitly list permissions when outputting to `pg_hba.conf` but `sudo` doesn't apply
+    #   and I don't know of a short equivalent
+    cat >> /etc/postgresql/9.1/main/pg_hba.conf <<EOF
+
+# In addition to \`peer\` authentication, require that \`vagrant\` provides a password at login
+local   all             vagrant                                     md5
+EOF
 
     # Restart PostgreSQL server
-    # sudo /etc/init.d/postgresql restart
+    sudo /etc/init.d/postgresql restart
 
-    # Set up pgpass
-    # echo "localhost:5432:nodebugme:vagrant:password" > /home/vagrant/.pgpass
-    # chmod 0600 /home/vagrant/.pgpass
-    # chown vagrant:vagrant /home/vagrant/.pgpass
+    # Set up pgpass (allows password-less login for `vagrant` via `pg.js` and once logged in)
+    echo "localhost:5432:nodebugme:vagrant:$psql_password" > /home/vagrant/.pgpass
+    chmod 0600 /home/vagrant/.pgpass
+    chown vagrant:vagrant /home/vagrant/.pgpass
   fi
 SCRIPT
 
