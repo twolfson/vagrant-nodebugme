@@ -1,5 +1,5 @@
 `vagrant-nodebugme` is done setting everything up.
-To start `nodebugme/site`, `ssh` into the Vagrant file via
+To start `nodebugme/site`, `ssh` into the Vagrant machine:
 
 ```
 vagrant ssh
