@@ -59,9 +59,23 @@ SELECT id FROM items;
 ```
 
 - All `psql` commands are `\{command}`. The full list can be viewed via `\?`.
-- When viewing query results that wrap rows, try `\x auto`. It automatically moves to an extended output when overflows occur.
+- When viewing query results that wrap rows, try `\x` (after `9.2`, use `\x auto`. It changes the output to an extended format.
 
-
+```
+# With \x
+-[ RECORD 1 ]----------------------------------------------------------------
+first  | some reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaly long text
+second | more content
+# Without \x
+                                first
+         |    second
+-------------------------------------------------------------
+---------+--------------
+ some reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly l
+ong text | more content
+(1 row)
+```
 
 [`PostgreSQL`]: http://www.postgresql.org/
 
