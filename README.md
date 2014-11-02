@@ -63,7 +63,8 @@ SELECT id FROM items;
 
 ```
 # With \x
--[ RECORD 1 ]----------------------------------------------------------------
+-[ RECORD 1 ]------------------------------------------------
+----------------
 first  | some reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaly long text
 second | more content
