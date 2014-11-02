@@ -55,13 +55,6 @@ SCRIPT
   # Restart PostgreSQL server
   # sudo /etc/init.d/postgresql restart
 
-  # Move to `nodebugme` as the default database
-  # cat >> ~/.bashrc <<EOF
-#
-# # Set up `nodebugme` as default PostgreSQL database
-# PGDATABASE="nodebugme"
-# EOF
-
   # Set up pgpass
   # echo "localhost:5432:nodebugme:vagrant:password" > /home/vagrant/.pgpass
   # chmod 0600 /home/vagrant/.pgpass
