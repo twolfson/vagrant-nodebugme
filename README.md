@@ -1,7 +1,5 @@
 # vagrant-nodebugme
 
-**CURRENTLY THIS IS NOT OPERATIONAL. I SPENT A COUPLE HOURS BUT STOPPED DUE TO LACK OF POSTGRESQL KNOWLEDGE/FRUSTRATION.**
-
 Vagrant for [`nodebugme`][]
 
 This was created to prevent `postgres` pollution on local machines.
@@ -25,6 +23,7 @@ vagrant ssh
   # Inside of Vagrant context
   cd /vagrant/site/
   npm start
+  # starting server on http://localhost:8080
 ```
 
 ## Contributing
