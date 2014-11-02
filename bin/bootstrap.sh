@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Exit on first error
+set -e
+
 # Install dependencies
 if ! which curl &> /dev/null; then
   sudo apt-get update
