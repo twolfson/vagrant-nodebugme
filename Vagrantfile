@@ -40,7 +40,7 @@ SCRIPT
   $setup_postgresql = <<SCRIPT
   # If we can't open `psql` as `vagrant`
   echo_command="psql --db postgres --command \"SELECT 'hai';\""
-  if ! sudo su --command "$echo_command" postgres &> /dev/null; then
+  if ! sudo su --command "$echo_command" vagrant; then
     # Set up `vagrant` user in PostgreSQL
     create_user_command="psql --command \"CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;\""
     sudo su --command "$create_user_command" postgres
