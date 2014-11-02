@@ -6,6 +6,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.network "forwarded_port", guest: 8080, host: 8080
 
+  # TODO: Move all scripts (except for echo) into `bin/bootstrap.sh`
+
   # Install dependencies
   $install_dependencies = <<SCRIPT
   if ! which curl &> /dev/null; then
