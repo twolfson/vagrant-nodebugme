@@ -40,6 +40,8 @@ SCRIPT
   # sudo su - postgres
     # psql
       # CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;
+      # TODO: Use a password like "R0cKeT!TuRtl3."
+      # ALTER ROLE vagrant WITH PASSWORD "password";
 
   # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
   # local   all             all                                     peer
