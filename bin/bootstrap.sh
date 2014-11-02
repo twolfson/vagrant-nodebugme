@@ -31,7 +31,7 @@ if ! sudo su --command "$echo_command" vagrant &> /dev/null; then
   create_user_command="psql --command \"CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;\""
   sudo su --command "$create_user_command" postgres
   psql_password="R0cKeT^TuRtl3."
-  set_password_command="psql --command \"ALTER ROLE vagrant WITH PASSWORD \\\"$psql_password\\\"\""
+  set_password_command="psql --command \"ALTER ROLE vagrant WITH PASSWORD '$psql_password'\""
   sudo su --command "$set_password_command" postgres
 
   # Require that `vagrant` must provide a password in addition to `peer` authentication
