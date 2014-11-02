@@ -42,8 +42,26 @@ If you are a first timer to `psql`, here are some quick gotchas/should knows:
 
 - Always use single quotes when referring to data
 
+```
+# Good
+SELECT 'Hello World';
+# Bad
+SELECT "Hello World";
+```
 
-- Results are not automatically sorted by index
+- Results are not automatically sorted by index, leverage `SORT BY` to fix this.
+
+```
+# Sorting guaranteed
+SELECT id FROM items SORT BY id;
+# Sorting not guaranteed
+SELECT id FROM items;
+```
+
+- All `psql` commands are `\{command}`. The full list can be viewed via `\?`.
+- When viewing query results that wrap rows, try `\x auto`. It automatically moves to an extended output when overflows occur.
+
+
 
 [`PostgreSQL`]: http://www.postgresql.org/
 
