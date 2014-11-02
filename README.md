@@ -30,6 +30,23 @@ vagrant ssh
 ### git
 `vagrant-nodebugme` clones the entire `nodebugme/site` repo into a `site/` in `vagrant-nodebugme's` directory. This is a fully funtional `git` repo that can check out branches, commit, and push.
 
+### psql
+`nodebugme/site` uses [`PostgreSQL`][] as its database. To debug database information, you can leverage the `psql` CLI tool. The database name will be `nodebugme`.
+
+```bash
+psql --db nodebugme
+# nodebugme=#
+```
+
+If you are a first timer to `psql`, here are some quick gotchas/should knows:
+
+- Always use single quotes when referring to data
+
+
+- Results are not automatically sorted by index
+
+[`PostgreSQL`]: http://www.postgresql.org/
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
