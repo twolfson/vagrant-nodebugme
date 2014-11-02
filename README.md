@@ -26,6 +26,10 @@ vagrant ssh
   # starting server on http://localhost:8080
 ```
 
+## Development
+### git
+`vagrant-nodebugme` clones the entire `nodebugme/site` repo into a `site/` in `vagrant-nodebugme's` directory. This is a fully funtional `git` repo that can check out branches, commit, and push.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
