@@ -59,7 +59,7 @@ SELECT id FROM items;
 ```
 
 - All `psql` commands are `\{command}`. The full list can be viewed via `\?`.
-- When viewing query results that wrap rows, try `\x` (after `9.2`, use `\x auto`. It changes the output to an extended format.
+- When viewing query results that wrap rows, try `\x` (`9.2` introduces `\x auto`). It changes the output to an extended format.
 
 ```
 # With \x
