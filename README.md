@@ -42,7 +42,7 @@ If you are a first timer to `psql`, here are some quick gotchas/should knows:
 
 - Always use single quotes when referring to data
 
-```
+```sql
 # Good
 SELECT 'Hello World';
 # Bad
@@ -51,7 +51,7 @@ SELECT "Hello World";
 
 - Results are not automatically sorted by index, leverage `SORT BY` to fix this.
 
-```
+```sql
 # Sorting guaranteed
 SELECT id FROM items SORT BY id;
 # Sorting not guaranteed
