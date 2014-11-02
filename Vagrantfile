@@ -41,7 +41,7 @@ SCRIPT
   # sudo su - postgres
     # psql
       # CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;
-      # TODO: Use a password like "R0cKeT!TuRtl3."
+      # TODO: Use a password like "R0cKeT\!TuRtl3."
       # ALTER ROLE vagrant WITH PASSWORD "password";
 
   # Updated inside of `/etc/postgresql/9.1/main/pg_hba.conf`
@@ -55,7 +55,11 @@ SCRIPT
   # Restart PostgreSQL server
   # sudo /etc/init.d/postgresql restart
 
+  # Set up pgpass
+  # echo "localhost:5432:nodebugme:vagrant:password" > /home/vagrant/.pgpass
+  # chmod 0600 /home/vagrant/.pgpass
+  # chown vagrant:vagrant /home/vagrant/.pgpass
+
   # Successfully run `npm start`
-  # TODO: We should be using `.pgpass` over environment variables
-  # PGUSER="vagrant" PGDATABASE="nodebugme" PGPASSWORD="password" npm start
+  # npm start
 end
