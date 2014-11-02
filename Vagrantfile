@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
   # Install dependencies
   $install_dependencies = <<SCRIPT
   if ! which curl &> /dev/null; then
+    sudo apt-get update
     sudo apt-get install -y curl git postgresql
   fi
 SCRIPT
