@@ -39,13 +39,13 @@ SCRIPT
   # Set up PostgreSQL configuration
   $setup_postgresql = <<SCRIPT
   # If we can't open `psql` as `vagrant`
-  echo_command="psql --db postgres --command \"SELECT 'hai';\""
+  echo_command="psql --db postgres --command \\"SELECT 'hai';\\""
   if ! sudo su --command "$echo_command" vagrant &> /dev/null; then
     # Set up `vagrant` user in PostgreSQL
-    create_user_command="psql --command \"CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;\""
+    create_user_command="psql --command \\"CREATE ROLE vagrant WITH SUPERUSER CREATEDB LOGIN;\\""
     sudo su --command "$create_user_command" postgres
     psql_password="R0cKeT^TuRtl3."
-    set_password_command="psql --command \"ALTER ROLE vagrant WITH PASSWORD \\\"$psql_password\\\"\""
+    set_password_command="psql --command \\"ALTER ROLE vagrant WITH PASSWORD \\\\\\"$psql_password\\\\\\"\\""
 
     # Require that `vagrant` must provide a password in addition to `peer` authentication
     # DEV: This fixes an issue with `pg.js` where `peer` authentication doesn't seem to work
@@ -53,7 +53,7 @@ SCRIPT
     #   and I don't know of a short equivalent
     cat >> /etc/postgresql/9.1/main/pg_hba.conf <<EOF
 
-# In addition to \`peer\` authentication, require that \`vagrant\` provides a password at login
+# In addition to \\`peer\\` authentication, require that \\`vagrant\\` provides a password at login
 local   all             vagrant                                     md5
 EOF
 
